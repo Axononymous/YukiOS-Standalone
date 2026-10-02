@@ -1,0 +1,45 @@
+name: Sync YukiOS dist files
+
+# One-time setup (all in the browser):
+# 1. In your repo on github.com: Add file -> Create new file
+# 2. Name it exactly: .github/workflows/sync-dist.yml
+# 3. Paste this whole file, Commit changes
+# 4. Actions tab -> "Sync YukiOS dist files" -> Run workflow -> Run workflow
+# 5. Wait ~1 min for the green check, then open YukiOS via the launcher.
+# Re-run it any time you want to update to a newer official release.
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Official YukiOS release tag to copy dist files from"
+        default: "v2026.7.31-376"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download official build
+        run: |
+          set -e
+          curl -sL -o /tmp/dist.zip "https://github.com/Reeyuki/YukiOS/releases/download/${{ inputs.release }}/dist.zip"
+          rm -rf /tmp/d && mkdir -p /tmp/d
+          unzip -q -o /tmp/dist.zip -d /tmp/d
+          # dist.zip wraps everything in a top-level dist/ folder;
+          # lay its contents next to yukios-standalone.html in this repo
+          cp -r /tmp/d/dist/. .
+          # keep the single-file page in sync with the same build
+          cp /tmp/d/dist/index.html yukios-standalone.html
+
+      - name: Commit files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && echo "Already up to date" || (git commit -m "Sync YukiOS dist files (${{ inputs.release }})" && git push)

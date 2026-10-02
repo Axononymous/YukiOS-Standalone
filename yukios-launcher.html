@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YukiOS Launcher</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;display:grid;place-items:center;padding:16px;color:#ece5d8;background:#1e1e1e;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.card{width:min(94vw,520px);padding:clamp(22px,5vw,36px);text-align:center;border-radius:14px;background:#242424;border:1px solid #ffffff1e;box-shadow:0 30px 80px -20px #000c}
+h1{font-size:1.8rem}h1 span{color:#f0a832}
+.sub{color:#c9c2b4;margin:6px 0 18px;font-size:.95rem}
+label{display:block;text-align:left;font-size:.82rem;color:#c9c2b4;margin:12px 0 4px}
+select{width:100%;padding:.6em .8em;border-radius:10px;border:1px solid #ffffff30;background:#ffffff12;color:#ece5d8;font:inherit}
+select option{color:#111;background:#fff}
+.go{margin-top:18px;font:inherit;font-size:1.1rem;font-weight:700;color:#1c1408;border:0;border-radius:10px;padding:.8em 2em;cursor:pointer;background:#f0a832}
+.go:hover{filter:brightness(1.08)} .go:disabled{opacity:.6;cursor:wait}
+.status{display:none;margin-top:16px;padding:12px;border-radius:10px;font-size:.9rem;text-align:left}
+.status.show{display:block}.status.load{background:#22e4ff1a;border:1px solid #22e4ff55}.status.ok{background:#3ddc8422;border:1px solid #3ddc8477}.status.err{background:#ff4d6d22;border:1px solid #ff4d6d77}
+.foot{margin-top:14px;font-size:.78rem;color:#8f8a7a}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.8em}
+</style>
+</head>
+<body>
+<main class="card">
+  <h1>Yuki<span>OS</span> Launcher</h1>
+  <p class="sub">Opens YukiOS in a new <code>about:blank</code> tab (URL bar stays blank).</p>
+  <label>New-tab disguise
+    <select id="cloak">
+      <option value="yukios">YukiOS</option>
+      <option value="docs">Google Docs</option>
+      <option value="classroom">Google Classroom</option>
+      <option value="drive">Google Drive</option>
+    </select>
+  </label>
+  <button class="go" id="go">Launch YukiOS</button>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+  <p class="foot">Loads your self-hosted build from jsDelivr, so Securly only sees the allowed CDN. Allow pop-ups if the browser blocks the new tab.</p>
+</main>
+<script>
+const YUKIOS_URL = "https://cdn.jsdelivr.net/gh/Axononymous/YukiOS-Standalone@main/yukios-standalone.html";
+const $ = id => document.getElementById(id);
+const btn = $("go"), box = $("status");
+const CLOAKS = {
+  yukios: ["YukiOS", "https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/favicon.ico"],
+  docs: ["Untitled document - Google Docs", "https://www.google.com/s2/favicons?domain=docs.google.com&sz=64"],
+  classroom: ["Classroom", "https://www.google.com/s2/favicons?domain=classroom.google.com&sz=64"],
+  drive: ["My Drive - Google Drive", "https://www.google.com/s2/favicons?domain=drive.google.com&sz=64"]
+};
+function say(kind, html){ box.className = "status show " + kind; box.innerHTML = html; }
+function shell(inner){
+  return '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Loading</title><style>' +
+    'body{margin:0;height:100vh;display:grid;place-items:center;background:#1e1e1e;color:#ece5d8;font:18px system-ui,sans-serif;text-align:center;padding:20px}' +
+    '.s{width:46px;height:46px;margin:0 auto 18px;border:5px solid #ffffff30;border-top-color:#f0a832;border-radius:50%;animation:r .8s linear infinite}' +
+    '@keyframes r{to{transform:rotate(1turn)}}p{color:#c9c2b4}</style></head><body><div>' + inner + '</div></body></html>';
+}
+/* jsDelivr serves .html as text/plain (anti-abuse), so it can never render
+   directly. But it sends Access-Control-Allow-Origin: *, so we fetch the
+   file as text and write it into the new tab — MIME type no longer matters. */
+const JSMIRRORS = ["cdn.jsdelivr.net","fastly.jsdelivr.net","gcore.jsdelivr.net","quantil.jsdelivr.net","originfastly.jsdelivr.net"];
+function mirrorUrls(u){
+  try{
+    const x = new URL(u);
+    if(!JSMIRRORS.includes(x.hostname)) return [u];
+    return JSMIRRORS.map(h => { const v = new URL(u); v.hostname = h; return v.href; });
+  }catch(e){ return [u]; }
+}
+function withBase(html, fromUrl){
+  const tag = '<base href="' + new URL(".", fromUrl).href + '">';
+  if (/<head[^>]*>/i.test(html)) return html.replace(/<head[^>]*>/i, m => m + tag);
+  if (/<html[^>]*>/i.test(html)) return html.replace(/<html[^>]*>/i, m => m + "<head>" + tag + "</head>");
+  return tag + html;
+}
+/* Under about:blank, window.location.origin is the literal string "null",
+   so every absolute-path builder in YukiOS produces "/null/..." URLs.
+   Rewrite them to the repo dir the file was actually fetched from. */
+function patchPayload(text, fromUrl){
+  const base = new URL(".", fromUrl).href.replace(/\/$/, "");
+  /* 1) about:blank makes window.location.origin the string "null" */
+  let out = text.split('window.location.origin+').join('"' + base + '"+');
+  /* 2) jsDelivr serves .html as text/plain, so pages given a direct iframe
+        src render as code. Route them through the bundle's own
+        fetch-then-blob loader instead (verified 1:1 against the build). */
+  out = out.split('o.src="' + base + '"+"/s/index.html",r.appendChild(o)')
+    .join('o.src="about:blank",fetchHtmlAsBlobUrl("' + base + '"+"/s/index.html").then(function(u){try{o.src=u}catch(e){}}),r.appendChild(o)');
+  out = out.split('d.src="' + base + '"+"/s/index.html"+p+(p?"&":"?")+"transport="+S;')
+    .join('d.src="about:blank",fetchHtmlAsBlobUrl("' + base + '"+"/s/index.html"+p+(p?"&":"?")+"transport="+S).then(function(u){try{d.src=u}catch(e){}});');
+  out = out.split('window.open("' + base + '"+"/s/index.html","blank")')
+    .join('(function(){var __scw=window.open("about:blank","blank");fetchHtmlAsBlobUrl("' + base + '"+"/s/index.html").then(function(u){try{__scw.location.href=u}catch(e){}})})()');
+  out = out.split('this.iframe.src="' + base + '"+this.getHTMLPath()+`?wisp=${encodeURIComponent(d)}&target=${encodeURIComponent(h)}`')
+    .join('(function(t){t.iframe.src="about:blank",fetchHtmlAsBlobUrl("' + base + '"+t.getHTMLPath()+`?wisp=${encodeURIComponent(d)}&target=${encodeURIComponent(h)}`).then(function(u){try{t.iframe.src=u}catch(e){}})})(this)');
+  out = out.split('s.src=this.buildGoogleUrl(t)')
+    .join('(s.src="about:blank",fetchHtmlAsBlobUrl(this.buildGoogleUrl(t)).then(function(u){try{s.src=u}catch(e){}}))');
+  out = out.split('window.open(nA,"blank")').join('window.open(rA||nA,"blank")');
+  out = out.split('`/scramapps/').join('`' + base + '/scramapps/');
+  return out;
+}
+function applyCloak(win){
+  try{
+    const [title, icon] = CLOAKS[$("cloak").value] || CLOAKS.yukios;
+    win.document.title = title;
+    win.document.querySelectorAll('link[rel~="icon"]').forEach(l => l.remove());
+    const link = win.document.createElement("link");
+    link.rel = "icon"; link.href = icon;
+    win.document.head.appendChild(link);
+  }catch(e){}
+}
+/* Diagnostics: runs before the YukiOS bundle, records JS errors and failed
+   requests so they can be read back here (school Chromebooks often have
+   DevTools disabled). NOTE: closing tag is concatenated so this file itself
+   contains no literal close tag inside its own script block. */
+function bootMonitor(){
+  return '<script>(function(){window.__bootErrors=[];window.__fetchFail=[];'
+  + 'window.addEventListener("error",function(e){try{var t=e.target;'
+  + 'if(t&&t!==window&&(t.src||t.href)){if(window.__bootErrors.length<20)window.__bootErrors.push("LOAD-FAIL: "+(t.src||t.href));return;}'
+  + 'if(window.__bootErrors.length<20)window.__bootErrors.push("ERR: "+(e.message||"unknown")+" @ "+(e.filename||"?")+":"+(e.lineno||"?"));}catch(x){}},true);'
+  + 'window.addEventListener("unhandledrejection",function(e){try{if(window.__bootErrors.length<20)window.__bootErrors.push("REJECT: "+((e.reason&&e.reason.message)||e.reason));}catch(x){}},true);'
+  + 'var f=window.fetch;window.fetch=function(){var u=arguments[0];return f.apply(this,arguments).then(function(r){'
+  + 'if(!r.ok&&window.__fetchFail.length<20)window.__fetchFail.push(r.status+" "+u);return r;},function(er){'
+  + 'if(window.__fetchFail.length<20)window.__fetchFail.push("FAIL "+u);throw er;});};'
+  + '})();<' + '/script>';
+}
+function withMonitor(html){
+  if (/<head[^>]*>/i.test(html)) return html.replace(/<head[^>]*>/i, m => m + bootMonitor());
+  return bootMonitor() + html;
+}
+function esc(s){ return String(s).replace(/[<>&"]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c])); }
+function watchBoot(win){
+  let n = 0;
+  const poll = setInterval(() => {
+    n++;
+    try{
+      if (win.closed) { clearInterval(poll); return; }
+      if (n > 24) { clearInterval(poll); return; }
+      const errs = win.__bootErrors || [], fails = win.__fetchFail || [];
+      let clock = "?";
+      try { const c = win.document.getElementById("clock"); clock = c ? c.textContent : "no-clock-el"; } catch(e){ clock = "unreadable"; }
+      if (errs.length || fails.length) {
+        say("err", "<b>Diagnostics</b> (taskbar clock now: <code>" + esc(clock) + "</code>)"
+          + "<br>JS errors:<br><code>" + (errs.length ? errs.slice(0,8).map(esc).join("<br>") : "(none)") + "</code>"
+          + "<br>Failed requests:<br><code>" + (fails.length ? fails.slice(0,10).map(esc).join("<br>") : "(none)") + "</code>");
+      }
+    }catch(e){}
+  }, 2500);
+}
+async function launch(){
+  const win = window.open("about:blank", "_blank");
+  if (!win || win.closed) {
+    say("err", "<b>Pop-up blocked.</b> Allow pop-ups for this page (address-bar icon), then click Launch YukiOS.");
+    return;
+  }
+  btn.disabled = true;
+  try {
+    win.document.open();
+    win.document.write(shell('<div class="s"></div>Loading YukiOS (10 MB, one-time fetch)...'));
+    win.document.close();
+    say("load", "Fetching YukiOS from jsDelivr (~10 MB)...");
+    let text = null, used = "";
+    let last = null;
+    for (const u of mirrorUrls(YUKIOS_URL)) {
+      try {
+        const r = await fetch(u, { cache: "force-cache" });
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        text = await r.text();
+        if (text.length < 100000) throw new Error("File looks too small to be YukiOS.");
+        used = u; break;
+      } catch(e){ last = e; }
+    }
+    if (text === null) throw last || new Error("Fetch failed.");
+    if (win.closed) throw new Error("The new tab was closed before loading finished.");
+    win.document.open();
+    win.document.write(withMonitor(withBase(patchPayload(text, used), used)));
+    win.document.close();
+    applyCloak(win);
+    say("ok", "<b>YukiOS opened.</b> Watching boot for errors — leave this tab open ~1 min. If YukiOS stalls, diagnostics appear here.");
+    watchBoot(win);
+  } catch(err){
+    let why = err && err.message ? err.message : String(err);
+    if (err && err.name === "TypeError") why = "Could not reach jsDelivr from this network.";
+    try{ if (!win.closed) { win.document.open(); win.document.write(shell("<h2>Couldn't load YukiOS</h2><p>" + why.replace(/</g,"&lt;") + "</p>")); win.document.close(); } }catch(e){}
+    say("err", "<b>Couldn't load YukiOS.</b> " + why.replace(/</g,"&lt;"));
+  } finally {
+    btn.disabled = false;
+  }
+}
+btn.addEventListener("click", launch);
+document.addEventListener("keydown", e => { if (e.key === "Enter") launch(); });
+/* Auto-launch on open. Browsers block window.open without a user gesture,
+   so if this gets blocked the button below does the same thing. */
+if (!/[\?&]manual=1/.test(location.search)) {
+  setTimeout(() => { if (!btn.disabled) launch(); }, 300);
+}
+</script>
+</body>
+</html>

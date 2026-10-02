@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YukiOS Features - Desktop Environment in Your Browser - YukiOS</title>
+<meta name="description" content="YukiOS is a full browser-based desktop environment with a tiling window manager, Mac desktop mode, 2900 free games, a terminal with Python and Git, retro emulators for DOS/Flash/x86/3DS, and 90+ built-in apps - all running directly in your browser with no installation." />
+<meta property="og:title" content="YukiOS Features - Desktop Environment in Your Browser - YukiOS" />
+<meta property="og:description" content="YukiOS is a full browser-based desktop environment with a tiling window manager, Mac desktop mode, 2900 free games, a terminal with Python and Git, retro emulators for DOS/Flash/x86/3DS, and 90+ built-in apps - all running directly in your browser with no installation." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/chromeos.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="YukiOS Features - Desktop Environment in Your Browser - YukiOS" />
+<meta name="twitter:description" content="YukiOS is a full browser-based desktop environment with a tiling window manager, Mac desktop mode, 2900 free games, a terminal with Python and Git, retro emulators for DOS/Flash/x86/3DS, and 90+ built-in apps - all running directly in your browser with no installation." />
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/chromeos.png" />
+<link rel="canonical" href="https://yukios.netlify.app/features.html" />
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebPage","name":"YukiOS Features - Desktop Environment in Your Browser - YukiOS","url":"https://yukios.netlify.app/features.html","description":"YukiOS is a full browser-based desktop environment with a tiling window manager, Mac desktop mode, 2900 free games, a terminal with Python and Git, retro emulators for DOS/Flash/x86/3DS, and 90+ built-in apps - all running directly in your browser with no installation.","about":{"@type":"SoftwareApplication","name":"YukiOS"}},{"@type":"ItemList","name":"YukiOS Features","numberOfItems":12,"itemListElement":[{"@type":"ListItem","position":1,"name":"Tiling Window Manager","url":"https://yukios.netlify.app/feature/tiling.html"},{"@type":"ListItem","position":2,"name":"Mac Desktop Mode","url":"https://yukios.netlify.app/feature/mac-mode.html"},{"@type":"ListItem","position":3,"name":"Browser Terminal with Python, Node & Git","url":"https://yukios.netlify.app/feature/terminal.html"},{"@type":"ListItem","position":4,"name":"Browser Emulators - DOS, Flash, x86 & 3DS","url":"https://yukios.netlify.app/feature/emulators.html"},{"@type":"ListItem","position":5,"name":"2900 Free Online Games - Play in Your Browser","url":"https://yukios.netlify.app/feature/games.html"},{"@type":"ListItem","position":6,"name":"3D Room - Interactive Game Library","url":"https://yukios.netlify.app/feature/3d-room.html"},{"@type":"ListItem","position":7,"name":"Start Menu & App Grid","url":"https://yukios.netlify.app/feature/start-menu.html"},{"@type":"ListItem","position":8,"name":"Multi-Workspace Desktop","url":"https://yukios.netlify.app/feature/workspaces.html"},{"@type":"ListItem","position":9,"name":"Desktop Widget System","url":"https://yukios.netlify.app/feature/widgets.html"},{"@type":"ListItem","position":10,"name":"Audio Mixer & System Sounds","url":"https://yukios.netlify.app/feature/audio-mixer.html"},{"@type":"ListItem","position":11,"name":"User Accounts & Multi-Profile","url":"https://yukios.netlify.app/feature/user-accounts.html"},{"@type":"ListItem","position":12,"name":"Remote Desktop - Access Your Computer from Anywhere","url":"https://yukios.netlify.app/feature/remote-desktop.html"}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"YukiOS","item":"https://yukios.netlify.app"},{"@type":"ListItem","position":2,"name":"Features","item":"https://yukios.netlify.app/features.html"}]}]</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+.seo-overlay{position:fixed;inset:0;z-index:999999;background:#0a0a14;overflow-y:auto;display:flex;flex-direction:column;transition:opacity .5s ease,visibility .5s ease;-webkit-font-smoothing:antialiased}
+.seo-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.seo-header{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(10,10,20,0.95);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);flex-shrink:0;position:sticky;top:0;z-index:10}
+.seo-brand{color:#fff;font-size:1.15rem;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;letter-spacing:-.01em;text-decoration:none}
+.seo-brand em{font-style:normal;color:#d97706}
+.seo-nav-links{display:flex;gap:20px}
+.seo-nav-links a{color:#888;font-size:.9rem;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;transition:color .15s}
+.seo-nav-links a:hover{color:#fff}
+.seo-main{flex:1;display:flex;flex-direction:column;align-items:center;padding:60px 24px 80px;width:100%}
+.seo-hero{text-align:center;max-width:800px;margin-bottom:48px;width:100%}
+.seo-hero h1{color:#fff;font-size:clamp(2rem,5vw,3rem);margin:0 0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:800;line-height:1.15;letter-spacing:-.02em}
+.seo-hero p{color:#999;font-size:clamp(1rem,2vw,1.2rem);line-height:1.7;margin:0 0 32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-hero .launch-btn{padding:14px 44px;background:#d97706;color:#fff;border:none;border-radius:10px;font-size:1.1rem;cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;transition:background .2s,transform .15s;font-weight:600;display:inline-block;user-select:none}
+.seo-hero .launch-btn:hover{background:#b45309;transform:scale(1.03)}
+.seo-hero .launch-btn:active{transform:scale(.97)}
+.seo-screenshot{width:100%;max-width:900px;margin-bottom:48px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);box-shadow:0 24px 64px rgba(0,0,0,0.5)}
+.slideshow-container{position:relative;width:100%;aspect-ratio:16/9;background:#000}
+.slideshow-wrapper{position:relative;width:100%;height:100%}
+.slideshow-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.5s ease}
+.slideshow-img-front{z-index:1;opacity:1}
+.slideshow-img-back{z-index:0;opacity:0}
+@keyframes slideshow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(217,119,6,0.3)}50%{box-shadow:0 0 0 8px rgba(217,119,6,0)}}
+.slideshow-btn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:50%;color:#fff;font-size:1.2rem;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;z-index:2;display:flex;align-items:center;justify-content:center;animation:slideshow-pulse 2.5s ease-in-out infinite}
+.slideshow-btn:hover{background:rgba(217,119,6,0.8);border-color:#d97706;transform:translateY(-50%) scale(1.12);animation:none}
+.slideshow-btn:active{transform:translateY(-50%) scale(0.95)}
+.slideshow-btn-prev{left:12px}
+.slideshow-btn-next{right:12px}
+.slideshow-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.slideshow-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:background .2s}
+.slideshow-dot:hover{background:rgba(255,255,255,0.7)}
+.slideshow-dot.active{background:#d97706}
+.seo-content{width:100%;max-width:800px}
+.seo-content h2{color:#ddd;font-size:1.3rem;margin:0 0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600}
+.seo-content ul{text-align:left;margin:0 0 24px;padding:0 0 0 20px;list-style:disc;color:#bbb;line-height:1.8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:1rem}
+.seo-content ul li{margin-bottom:4px}
+.seo-content .seo-cta{color:#aaa;font-size:1rem;margin:0 0 16px;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-content .seo-more{color:#999;font-size:.95rem;margin:24px 0 0;line-height:1.8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-content .seo-more a{color:#d97706;text-decoration:none}
+.seo-content .seo-more a:hover{text-decoration:underline}
+.seo-footer{flex-shrink:0;border-top:1px solid rgba(255,255,255,0.06);padding:24px;text-align:center;background:rgba(10,10,20,0.8)}
+.seo-footer p{color:#666;font-size:.9rem;margin:0 0 6px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-footer a{color:#888;font-size:.9rem;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;transition:color .15s}
+.seo-footer a:hover{color:#d97706}
+.seo-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1100px;width:100%;margin:0 auto}
+.seo-gallery .feature-card{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);transition:transform .2s,border-color .2s;aspect-ratio:16/11;text-decoration:none;display:block}
+.seo-gallery .feature-card:hover{transform:scale(1.05);border-color:rgba(217,119,6,0.5);z-index:1}
+.seo-gallery .feature-card img{width:100%;height:100%;object-fit:cover;display:block}
+.seo-gallery .feature-card-label{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;font-size:.9rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:500;text-align:center;line-height:1.3}
+.seo-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin:40px auto;max-width:900px;padding:0 24px}
+.seo-stat{text-align:center}
+.seo-stat-num{color:#d97706;font-size:2rem;font-weight:800;display:block;line-height:1.2}
+.seo-stat-label{color:#888;font-size:.85rem;margin-top:4px;display:block}
+.seo-features{max-width:1200px;margin:40px auto;padding:0 24px;width:100%}
+.seo-feature-category{margin-bottom:48px}
+.seo-category-title{color:#fff;font-size:1.8rem;font-weight:700;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.seo-category-title i{color:#d97706}
+.seo-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.seo-feature{display:flex;gap:16px;padding:20px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;transition:background .2s,border-color .2s}
+.seo-feature:hover{background:rgba(255,255,255,0.04);border-color:rgba(217,119,6,0.2)}
+.seo-feature-icon{width:40px;height:40px;flex-shrink:0;background:rgba(217,119,6,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#d97706}
+.seo-feature-body{flex:1}
+.seo-feature-body h3{color:#ddd;font-size:1rem;margin:0 0 6px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-feature-body p{color:#999;font-size:.9rem;line-height:1.5;margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-feature-body a{color:#d97706;text-decoration:none}
+.seo-feature-body a:hover{text-decoration:underline}
+.seo-cta-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:48px auto;max-width:800px;padding:0 24px}
+.seo-cta-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:28px 32px;text-align:center;text-decoration:none;flex:1;min-width:200px;transition:background .2s,border-color .2s}
+.seo-cta-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(217,119,6,0.3)}
+.seo-cta-card h3{color:#fff;font-size:1.1rem;margin:0 0 6px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-cta-card p{color:#999;font-size:.9rem;margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.seo-cta-card .cta-count{color:#d97706;font-size:1.6rem;font-weight:800;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="seo-overlay" role="main">
+  <header class="seo-header">
+    <a href="/" class="seo-brand"><em>Y</em>ukiOS</a>
+    <div class="seo-nav-links">
+      <a href="/features.html">Features</a>
+      <a href="/apps.html">Apps</a>
+      <a href="/games.html">Games</a>
+      <a href="https://github.com/Reeyuki/YukiOS">GitHub</a>
+    </div>
+  </header>
+  <main class="seo-main">
+    <section class="seo-hero">
+      <h1>YukiOS Features - Desktop Environment in Your Browser</h1>
+      <p>YukiOS is a full browser-based desktop environment with a tiling window manager, Mac desktop mode, 2900 free games, a terminal with Python and Git, retro emulators for DOS/Flash/x86/3DS, and 90+ built-in apps - all running directly in your browser with no installation.</p>
+      <a class="launch-btn" href="/">Launch YukiOS</a>
+    </section>
+    
+<section class="seo-screenshot">
+  <div class="slideshow-container">
+    <button class="slideshow-btn slideshow-btn-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+    <div class="slideshow-wrapper">
+      <img id="slideshow-img-front" class="slideshow-img slideshow-img-front" src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/tiling.png" alt="YukiOS Screenshot" loading="lazy" />
+      <img id="slideshow-img-back" class="slideshow-img slideshow-img-back" src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/tiling.png" alt="YukiOS Screenshot" loading="lazy" />
+      <div class="slideshow-dots" id="slideshow-dots"></div>
+    </div>
+    <button class="slideshow-btn slideshow-btn-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</section>
+<script>
+const slideshowImages = ["https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/tiling.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/tiling-2.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/chromeos.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/btop-lavat-cmatrix.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/overlay.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/steam.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/3d.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/startmenu.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/workspaces.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/widgets.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/audio1.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/login.png","https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/chromeos.png"];
+let currentSlide = 0;
+let slideshowInterval;
+let activeIsFront = true;
+
+function showSlide(index) {
+  const front = document.getElementById('slideshow-img-front');
+  const back = document.getElementById('slideshow-img-back');
+  if (!front || !back) return;
+  currentSlide = (index + slideshowImages.length) % slideshowImages.length;
+  if (activeIsFront) {
+    back.src = slideshowImages[currentSlide];
+    back.style.opacity = '1';
+    front.style.opacity = '0';
+  } else {
+    front.src = slideshowImages[currentSlide];
+    front.style.opacity = '1';
+    back.style.opacity = '0';
+  }
+  activeIsFront = !activeIsFront;
+  updateDots();
+}
+
+function changeSlide(direction) {
+  showSlide(currentSlide + direction);
+  stopSlideshow();
+}
+
+function updateDots() {
+  const dotsContainer = document.getElementById('slideshow-dots');
+  if (!dotsContainer) return;
+  dotsContainer.innerHTML = '';
+  slideshowImages.forEach((_, index) => {
+    const dot = document.createElement('span');
+    dot.className = 'slideshow-dot' + (index === currentSlide ? ' active' : '');
+    dot.onclick = () => { showSlide(index); stopSlideshow(); };
+    dotsContainer.appendChild(dot);
+  });
+}
+
+function stopSlideshow() {
+  clearInterval(slideshowInterval);
+}
+
+function startSlideshow() {
+  stopSlideshow();
+  slideshowInterval = setInterval(() => changeSlide(1), 5000);
+}
+</script>
+    <section class="seo-content">
+      
+<div class="seo-stats">
+  <div class="seo-stat"><span class="seo-stat-num">90+</span><span class="seo-stat-label">Built-in Apps</span></div>
+  <div class="seo-stat"><span class="seo-stat-num">3,700+</span><span class="seo-stat-label">Free Games</span></div>
+  <div class="seo-stat"><span class="seo-stat-num">40+</span><span class="seo-stat-label">Themes</span></div>
+  <div class="seo-stat"><span class="seo-stat-num">4</span><span class="seo-stat-label">Desktop Modes</span></div>
+  <div class="seo-stat"><span class="seo-stat-num">6</span><span class="seo-stat-label">Emulators</span></div>
+</div>
+<div class="seo-features">
+  <div class="seo-feature-category">
+    <h2 class="seo-category-title"><i class="fas fa-desktop"></i> Desktop & Window Management</h2>
+    <div class="seo-feature-grid">
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-desktop"></i></div>
+        <div class="seo-feature-body">
+          <h3>Full Desktop Experience</h3>
+          <p>Complete desktop environment with draggable resizable windows, window snapping, multiple workspaces, taskbar with live previews, system tray, and start menu.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fab fa-apple"></i></div>
+        <div class="seo-feature-body">
+          <h3>Mac Desktop Mode</h3>
+          <p>macOS-style desktop with top menu bar, animated fisheye dock, Control Center tray, Launchpad app grid, and traffic light window buttons.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-border-all"></i></div>
+        <div class="seo-feature-body">
+          <h3>Tiling Window Manager</h3>
+          <p>Hyprland-inspired BSP tiling with keyboard-driven layout management. 9 independent workspaces, live config editing, gap control, and floating window support.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-cube"></i></div>
+        <div class="seo-feature-body">
+          <h3>3D Room Mode</h3>
+          <p>Interactive first-person 3D room built with Three.js. Browse holographic app launcher, arrange furniture, grab physics-based game cases, and launch games directly from the room.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="seo-feature-category">
+    <h2 class="seo-category-title"><i class="fas fa-code"></i> Productivity & Development</h2>
+    <div class="seo-feature-grid">
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-terminal"></i></div>
+        <div class="seo-feature-body">
+          <h3>Browser Terminal</h3>
+          <p>Unix-like shell with Python REPL, Node.js REPL, and complete Git integration. Multiple tabs, pipeline support, reverse search, and WASM terminal apps.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-folder-open"></i></div>
+        <div class="seo-feature-body">
+          <h3>Persistent File System</h3>
+          <p>IndexedDB-based file manager with drag-and-drop uploads, ZIP and 7z extraction, file previews for images video PDF code and markdown. Mount external folders and set wallpapers.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-th-large"></i></div>
+        <div class="seo-feature-body">
+          <h3>90+ Built-in Applications</h3>
+          <p>Terminal with Python REPL via Pyodide, Node.js REPL via WebContainers, and full Git integration. Code editor with Monaco/VS Code, media player, web browser with Tor, office viewer, weather, and system settings.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-search"></i></div>
+        <div class="seo-feature-body">
+          <h3>Command Palette</h3>
+          <p>Press Ctrl+K or F1 to search apps, files, and system commands. Quick actions for wallpaper, themes, DND, workspace switching, and more. Built-in calculator and unit converter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="seo-feature-category">
+    <h2 class="seo-category-title"><i class="fas fa-gamepad"></i> Gaming & Emulation</h2>
+    <div class="seo-feature-grid">
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-gamepad"></i></div>
+        <div class="seo-feature-body">
+          <h3>3,700+ Free Games</h3>
+          <p>Play thousands of browser games from every genre. Includes retro emulators for DOS via JsDos, Flash via Ruffle, x86 via Virtual86, and 3DS via Azahar. Steam-like launcher with overlay, achievements, and playtime tracking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="seo-feature-category">
+    <h2 class="seo-category-title"><i class="fas fa-sliders-h"></i> System & Customization</h2>
+    <div class="seo-feature-grid">
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-sliders-h"></i></div>
+        <div class="seo-feature-body">
+          <h3>Audio Mixer & System Sounds</h3>
+          <p>Per-app volume control with live waveform visualizer, master volume and mute toggle, system sounds for common actions, and tray icon with scroll-to-adjust.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-users"></i></div>
+        <div class="seo-feature-body">
+          <h3>User Accounts & Multi-Profile</h3>
+          <p>Create multiple user profiles with custom nicknames, avatars, and desktop configurations. Lock screen with idle timeout, session switching, and per-profile wallpaper and theme persistence.</p>
+        </div>
+      </div>
+      <div class="seo-feature">
+        <div class="seo-feature-icon"><i class="fas fa-palette"></i></div>
+        <div class="seo-feature-body">
+          <h3>Theme System</h3>
+          <p>40+ theme presets with custom theme support, light and dark modes, and transparency toggle. 400+ animated wallpapers with customizable Vanta.js support in wallpaper engine.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="seo-cta-row">
+  <a href="/apps.html" class="seo-cta-card">
+    <span class="cta-count">90+</span>
+    <h3>Browse Apps</h3>
+    <p>Explore the full catalog of built-in applications</p>
+  </a>
+  <a href="/games.html" class="seo-cta-card">
+    <span class="cta-count">3,700+</span>
+    <h3>Browse Games</h3>
+    <p>Discover free games across every genre</p>
+  </a>
+  <a href="/feature/tiling.html" class="seo-cta-card">
+    <h3>Desktop Modes</h3>
+    <p>Mac, Windows, Tiling, or Minimal , switch anytime</p>
+  </a>
+</div>
+<div class="seo-gallery"><a href="/feature/tiling.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/tiling.png" alt="Tiling Window Manager" loading="lazy"/><span class="feature-card-label">Tiling Window Manager</span></a><a href="/feature/tiling.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/tiling-2.png" alt="Tiling Window Manager" loading="lazy"/><span class="feature-card-label">Tiling Window Manager</span></a><a href="/feature/mac-mode.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/chromeos.png" alt="Mac Desktop Mode" loading="lazy"/><span class="feature-card-label">Mac Desktop Mode</span></a><a href="/feature/terminal.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/btop-lavat-cmatrix.png" alt="Browser Terminal with Python, Node & Git" loading="lazy"/><span class="feature-card-label">Browser Terminal with Python, Node & Git</span></a><a href="/feature/emulators.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/overlay.png" alt="Browser Emulators - DOS, Flash, x86 & 3DS" loading="lazy"/><span class="feature-card-label">Browser Emulators - DOS, Flash, x86 & 3DS</span></a><a href="/feature/games.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/steam.png" alt="2900 Free Online Games - Play in Your Browser" loading="lazy"/><span class="feature-card-label">2900 Free Online Games - Play in Your Browser</span></a><a href="/feature/3d-room.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/3d.png" alt="3D Room - Interactive Game Library" loading="lazy"/><span class="feature-card-label">3D Room - Interactive Game Library</span></a><a href="/feature/start-menu.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/startmenu.png" alt="Start Menu & App Grid" loading="lazy"/><span class="feature-card-label">Start Menu & App Grid</span></a><a href="/feature/workspaces.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/workspaces.png" alt="Multi-Workspace Desktop" loading="lazy"/><span class="feature-card-label">Multi-Workspace Desktop</span></a><a href="/feature/widgets.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/widgets.png" alt="Desktop Widget System" loading="lazy"/><span class="feature-card-label">Desktop Widget System</span></a><a href="/feature/audio-mixer.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/audio1.png" alt="Audio Mixer & System Sounds" loading="lazy"/><span class="feature-card-label">Audio Mixer & System Sounds</span></a><a href="/feature/user-accounts.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/login.png" alt="User Accounts & Multi-Profile" loading="lazy"/><span class="feature-card-label">User Accounts & Multi-Profile</span></a><a href="/feature/remote-desktop.html" class="feature-card"><img src="https://cdn.jsdelivr.net/gh/Reeyuki/YukiOS@main/.github/chromeos.png" alt="Remote Desktop - Access Your Computer from Anywhere" loading="lazy"/><span class="feature-card-label">Remote Desktop - Access Your Computer from Anywhere</span></a></div>
+<p style="color:#aaa;font-size:.85rem;text-align:center;margin-top:48px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">YukiOS is free, open-source, and runs entirely in your browser with no downloads, sign-ups, or installation required.</p>
+      <style>.yuki-ad-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;margin:32px auto;width:100%}
+.yuki-ad-slot span{color:#555;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.yuki-ad-unit{min-height:160px;display:flex;align-items:center;justify-content:center;width:100%;max-width:600px;overflow:hidden}</style>
+      <div class="yuki-ad-slot"><span>Advertisement</span><div class="yuki-ad-unit" id="landing-ad-1"></div></div>
+<div class="yuki-ad-slot"><span>Advertisement</span><div class="yuki-ad-unit" id="landing-ad-2"></div></div>
+    </section>
+  </main>
+  <footer class="seo-footer">
+    <p>YukiOS - Free Browser-Based Desktop Environment</p>
+    <div><a href="/features.html">Features</a> &middot; <a href="https://github.com/Reeyuki/YukiOS">GitHub</a> &middot; <a href="/">About</a></div>
+  </footer>
+</div>
+<script>
+function injectAdsterraAd(id,key,w,h,delay,fmt){
+  function doIt(){
+    var slot=document.getElementById(id);
+    if(!slot)return;
+    var cfg=document.createElement('script');
+    cfg.text="atOptions={'key':'"+key+"','format':'"+(fmt||'iframe')+"','height':"+h+",'width':"+w+",'params':{}};";
+    slot.appendChild(cfg);
+    var inv=document.createElement('script');
+    inv.src="https://www.highperformanceformat.com/"+key+"/invoke.js";
+    inv.async=true;
+    slot.appendChild(inv);
+  }
+  if(delay>0)setTimeout(doIt,delay);else doIt();
+}
+injectAdsterraAd("landing-ad-1","f88fd46583493c3820f283948e5e5391",300,160,0);
+injectAdsterraAd("landing-ad-2","ee9dc67de90729e2804aa8aba6454ec8",600,160,1000);
+</script>
+</body>
+</html>
